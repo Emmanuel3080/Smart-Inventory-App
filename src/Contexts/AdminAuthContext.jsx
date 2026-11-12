@@ -74,7 +74,7 @@ const AdminAuthProvider = ({ children }) => {
             if (response.ok) {
                 toast.success(`Welcome onboard ${data.adminInfo.fullName || "Sign In Successful"}`)
                 localStorage.setItem("accesToken", data.accesToken)
-                navigate("/admin")
+                navigate("/admin/dashboard")
             }
             else {
                 toast.error(`${data.Message || "Sign In Failed"}`)

@@ -6,6 +6,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from 'react-hook-form';
 import { adminAuthContext } from '../Contexts/AdminAuthContext';
 import { toast } from 'sonner';
+import { SmallBizLogo } from '../Components/SmallBizLogo';
 
 const adminAuthSchema = yup.object({
   adminEmail: yup.string().email("Please enter a valid email address").required("Email address is required"),
@@ -61,20 +62,15 @@ const AdminSignIn = () => {
 
         {/* Header Module */}
         <div className="flex flex-col items-center text-center mb-8">
-          <div className="w-12 h-12 rounded-xl bg-[#FAF7F2] border border-[#E8E2D8] text-stone-900 flex items-center justify-center shadow-xs mb-3.5">
-            <Shield size={24} />
-          </div>
-
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 mb-2 rounded-full bg-[#F5EFE6] border border-[#E5DCCE] text-stone-700 text-xs font-medium tracking-wide">
-            <Package size={13} className="text-stone-600" />
-            Administrator Portal
-          </div>
+          {/* <div className="mb-4">
+            <SmallBizLogo variant="compact" size="lg" badge="Admin" />
+          </div> */}
 
           <h1 className="text-2xl sm:text-3xl font-serif font-bold text-stone-900 tracking-tight">
-            Welcome Back
+            Administrator Sign In
           </h1>
-          <p className="text-xs sm:text-sm text-stone-500 mt-1">
-            Sign in with your administrative credentials to manage operations
+          <p className="text-xs sm:text-sm text-stone-500 mt-1 max-w-xs">
+            Run your business. Know your stock.
           </p>
         </div>
 
@@ -150,7 +146,7 @@ const AdminSignIn = () => {
           {/* Submit Button */}
           <button
             type="submit"
-            className="w-full py-3 rounded-xl mt-6 flex items-center justify-center gap-2 text-stone-50 text-xs font-semibold tracking-wide transition-colors bg-stone-900 hover:bg-stone-800 shadow-xs active:scale-[0.99] disabled:opacity-60 disabled:cursor-not-allowed cursor-pointer"
+            className="w-full py-3 rounded-xl mt-6 flex items-center justify-center gap-2 text-white text-xs font-semibold tracking-wide transition-colors bg-[#1F5C4A] hover:bg-[#174738] active:bg-[#103328] shadow-xs active:scale-[0.99] disabled:opacity-60 disabled:cursor-not-allowed cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1F5C4A]"
             disabled={loadingSign}
           >
             {loadingSign ? (

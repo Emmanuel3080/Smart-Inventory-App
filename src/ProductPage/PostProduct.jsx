@@ -499,7 +499,7 @@ const PostProduct = () => {
             <button
               type="submit"
               disabled={loadPostProduct}
-              className="flex items-center gap-2 px-6 py-2.5 bg-stone-900 hover:bg-stone-800 text-stone-50 rounded-xl text-xs font-semibold transition-colors shadow-xs active:scale-[0.98] disabled:opacity-50 cursor-pointer"
+              className="flex items-center gap-2 px-6 py-2.5 bg-[#1F5C4A] hover:bg-[#174738] active:bg-[#103328] text-white rounded-xl text-xs font-semibold transition-colors shadow-xs active:scale-[0.98] disabled:opacity-50 cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1F5C4A]"
             >
               {loadPostProduct ? (
                 <>

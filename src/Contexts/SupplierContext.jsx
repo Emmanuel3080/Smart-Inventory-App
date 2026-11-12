@@ -33,7 +33,7 @@ const SupplierProvider = ({ children }) => {
             const result = await response.json()
             if (response.ok) {
                 toast.success(result.Message)
-                navigate("/admin")
+                navigate("/admin/dashboard")
             }
             else {
                 toast.error(result.Message)

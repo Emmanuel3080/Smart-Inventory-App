@@ -13,11 +13,13 @@ import {
   CreditCard,
   Layers,
   Sparkles,
+  UserPlus,
 } from "lucide-react";
 import { productContext } from "../Contexts/ProductContext";
 import ProductTableList from "../Components/ProductTableList";
 import { TransactionContext } from "../Contexts/TransactionContext";
 import Modal from "react-modal";
+import InviteStaffModal from "./InviteStaffModal";
 
 Modal.setAppElement("#root");
 
@@ -27,6 +29,7 @@ const AdminContent = () => {
 
   const [searchQuery, setSearchQuery] = useState("");
   const [modalOpen, setModalOpen] = useState(false);
+  const [inviteModalOpen, setInviteModalOpen] = useState(false);
   const [trxSearchQuery, setTrxSearchQuery] = useState("");
 
   useEffect(() => {
@@ -118,10 +121,10 @@ const AdminContent = () => {
         {/* Top Header & Fast Action Controls */}
         <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-5 border-b border-[#E8E2D8] pb-6">
           <div>
-            <div className="inline-flex items-center gap-2 px-3 py-1 mb-2.5 rounded-full bg-[#F5EFE6] border border-[#E5DCCE] text-stone-700 text-xs font-medium tracking-wide">
+            {/* <div className="inline-flex items-center gap-2 px-3 py-1 mb-2.5 rounded-full bg-[#F5EFE6] border border-[#E5DCCE] text-stone-700 text-xs font-medium tracking-wide">
               <Sparkles size={13} className="text-stone-600" />
               Administrative Command Suite
-            </div>
+            </div> */}
             <h1 className="text-3xl sm:text-4xl font-serif font-bold text-stone-900 tracking-tight">
               Inventory & Operations
             </h1>
@@ -133,12 +136,28 @@ const AdminContent = () => {
           {/* Action Toolbar */}
           <div className="flex flex-wrap items-center gap-3">
             <Link
+              to="/admin/staff"
+              className="flex items-center gap-2 px-4 py-2.5 bg-white border border-[#E8E2D8] hover:border-stone-400 text-stone-800 rounded-xl text-xs font-medium hover:bg-[#FAF7F2] transition-colors shadow-xs"
+            >
+              <Users size={15} className="text-stone-600" />
+              Staff Directory
+            </Link>
+
+            <Link
               to="/my_suppliers"
               className="flex items-center gap-2 px-4 py-2.5 bg-white border border-[#E8E2D8] hover:border-stone-400 text-stone-800 rounded-xl text-xs font-medium hover:bg-[#FAF7F2] transition-colors shadow-xs"
             >
               <Users size={15} className="text-stone-600" />
               Suppliers Directory
             </Link>
+
+            <button
+              onClick={() => setInviteModalOpen(true)}
+              className="flex items-center gap-2 px-4 py-2.5 bg-white border border-[#E8E2D8] hover:border-stone-400 text-stone-800 rounded-xl text-xs font-medium hover:bg-[#FAF7F2] transition-colors shadow-xs cursor-pointer"
+            >
+              <UserPlus size={15} className="text-stone-600" />
+              Invite Staff
+            </button>
 
             <button
               onClick={() => setModalOpen(true)}
@@ -150,7 +169,7 @@ const AdminContent = () => {
 
             <Link
               to="/post_product"
-              className="flex items-center gap-2 px-5 py-2.5 bg-stone-900 hover:bg-stone-800 text-stone-50 rounded-xl text-xs font-semibold transition-colors shadow-xs active:scale-[0.98]"
+              className="flex items-center gap-2 px-5 py-2.5 bg-[#1F5C4A] hover:bg-[#174738] active:bg-[#103328] text-white rounded-xl text-xs font-semibold transition-colors shadow-xs active:scale-[0.98] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1F5C4A]"
             >
               <Plus size={15} />
               Add New Product
@@ -404,7 +423,7 @@ const AdminContent = () => {
             {/* Modal Footer */}
             <div className="flex justify-between items-center px-6 py-4 border-t border-[#E8E2D8] bg-[#FAF7F2]">
               <span className="text-xs text-stone-500 font-normal">
-                Encrypted audit stream • SME.OS
+                Encrypted audit stream • SmallBiz Operations
               </span>
               <button
                 onClick={() => setModalOpen(false)}
@@ -415,6 +434,12 @@ const AdminContent = () => {
             </div>
           </div>
         </Modal>
+
+        {/* Invite Staff Management Modal */}
+        <InviteStaffModal
+          isOpen={inviteModalOpen}
+          onClose={() => setInviteModalOpen(false)}
+        />
       </div>
     </div>
   );

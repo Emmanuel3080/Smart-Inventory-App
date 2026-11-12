@@ -49,7 +49,7 @@ const ProductTableList = ({ allProducts = [], searchQuery = "" }) => {
         </p>
         <Link
           to="/post_product"
-          className="inline-flex items-center gap-2 mt-5 px-5 py-2.5 bg-stone-900 hover:bg-stone-800 text-stone-50 rounded-xl text-xs font-semibold shadow-xs transition-colors"
+          className="inline-flex items-center gap-2 mt-5 px-5 py-2.5 bg-[#1F5C4A] hover:bg-[#174738] active:bg-[#103328] text-white rounded-xl text-xs font-semibold shadow-xs transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1F5C4A]"
         >
           <Plus size={15} />
           Register First Product
@@ -109,7 +109,7 @@ const ProductTableList = ({ allProducts = [], searchQuery = "" }) => {
             <button
               disabled={loadDeleteProd}
               onClick={handleConfirmDelete}
-              className="flex-1 flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-rose-700 text-white font-semibold text-xs hover:bg-rose-800 transition-colors disabled:opacity-50 cursor-pointer"
+              className="flex-1 flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-[#B91C1C] text-white font-semibold text-xs hover:bg-[#991B1B] transition-colors disabled:opacity-50 cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#B91C1C]"
             >
               {loadDeleteProd ? (
                 <>
@@ -128,7 +128,7 @@ const ProductTableList = ({ allProducts = [], searchQuery = "" }) => {
       <div className="overflow-x-auto rounded-xl border border-[#E8E2D8] bg-white shadow-xs">
         <table className="w-full text-left border-collapse">
           <thead>
-            <tr className="bg-[#FAF7F2] border-b border-[#E8E2D8] text-[11px] font-semibold text-stone-600 uppercase tracking-wider">
+            <tr className="bg-[#F2EDE4] border-b border-[#E8E2D8] text-[11px] font-semibold text-[#57534E] uppercase tracking-wider">
               <th className="px-5 py-3.5">Product Information</th>
               <th className="px-5 py-3.5">SKU</th>
               <th className="px-5 py-3.5">Category</th>
@@ -139,10 +139,10 @@ const ProductTableList = ({ allProducts = [], searchQuery = "" }) => {
             </tr>
           </thead>
 
-          <tbody className="divide-y divide-[#F2ECE1] text-xs">
+          <tbody className="divide-y divide-[#E8E2D8] text-xs">
             {filteredProducts.length === 0 ? (
               <tr>
-                <td colSpan={7} className="text-center py-12 text-stone-400">
+                <td colSpan={7} className="text-center py-12 text-[#78716C]">
                   <p className="text-xs font-medium">No products match your search filter</p>
                 </td>
               </tr>
@@ -155,22 +155,22 @@ const ProductTableList = ({ allProducts = [], searchQuery = "" }) => {
                 const profit = sellingPrice - unitPrice;
                 const margin = unitPrice > 0 ? Math.round((profit / unitPrice) * 100) : 0;
 
-                let statusLabel = "Healthy Stock";
-                let statusBadge = "bg-[#EEF5EE] text-emerald-800 border-emerald-200";
-                let dotColor = "bg-emerald-600";
+                let statusLabel = "In Stock";
+                let statusBadge = "bg-[#E6F4EA] text-[#15803D] border-[#15803D]/20";
+                let dotColor = "bg-[#15803D]";
 
                 if (quantity === 0) {
                   statusLabel = "Out of Stock";
-                  statusBadge = "bg-[#FDF2F2] text-rose-800 border-rose-200";
-                  dotColor = "bg-rose-600";
+                  statusBadge = "bg-[#FEE2E2] text-[#B91C1C] border-[#B91C1C]/20";
+                  dotColor = "bg-[#B91C1C]";
                 } else if (quantity <= minStock) {
                   statusLabel = "Low Stock";
-                  statusBadge = "bg-[#FDF6ED] text-amber-800 border-amber-200";
-                  dotColor = "bg-amber-600";
+                  statusBadge = "bg-[#FFEDD5] text-[#C2410C] border-[#C2410C]/20";
+                  dotColor = "bg-[#C2410C]";
                 }
 
                 return (
-                  <tr key={product._id} className="hover:bg-[#FAF7F2]/60 transition-colors group">
+                  <tr key={product._id} className="hover:bg-[#FAF8F5] transition-colors group">
                     {/* 1. Product Info */}
                     <td className="px-5 py-4">
                       <div className="flex items-center gap-3">

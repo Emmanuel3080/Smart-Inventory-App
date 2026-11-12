@@ -6,6 +6,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from 'react-hook-form';
 import { toast } from 'sonner';
 import { StaffAuthContext } from '../Contexts/StaffAuthContext';
+import { SmallBizLogo } from '../Components/SmallBizLogo';
 
 const staffAuthSchema = yup.object({
   firstName: yup.string().required("First name is required"),
@@ -64,19 +65,15 @@ const StaffRegistrationForm = () => {
 
         {/* Header */}
         <div className="flex flex-col items-center text-center mb-7">
-          <div className="w-12 h-12 rounded-xl bg-[#FAF7F2] border border-[#E8E2D8] text-stone-900 flex items-center justify-center shadow-xs mb-3">
-            <ShoppingBag size={24} />
-          </div>
-
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 mb-2 rounded-full bg-[#F5EFE6] border border-[#E5DCCE] text-stone-700 text-xs font-medium tracking-wide">
-            Staff Portal Registration
-          </div>
+          {/* <div className="mb-4">
+            <SmallBizLogo variant="compact" size="lg" badge="Staff" />
+          </div> */}
 
           <h1 className="text-2xl sm:text-3xl font-serif font-bold text-stone-900 tracking-tight">
             Create Staff Account
           </h1>
-          <p className="text-xs sm:text-sm text-stone-500 mt-1">
-            Register your staff credentials to begin operating POS transactions
+          <p className="text-xs sm:text-sm text-stone-500 mt-1 max-w-sm">
+            Register your staff credentials to begin operating SmallBiz POS
           </p>
         </div>
 
@@ -207,7 +204,7 @@ const StaffRegistrationForm = () => {
           {/* Submit Button */}
           <button
             type="submit"
-            className="w-full py-3 rounded-xl mt-6 flex items-center justify-center gap-2 text-stone-50 text-xs font-semibold tracking-wide transition-colors bg-stone-900 hover:bg-stone-800 shadow-xs active:scale-[0.99] disabled:opacity-60 disabled:cursor-not-allowed cursor-pointer"
+            className="w-full py-3 rounded-xl mt-6 flex items-center justify-center gap-2 text-white text-xs font-semibold tracking-wide transition-colors bg-[#1F5C4A] hover:bg-[#174738] active:bg-[#103328] shadow-xs active:scale-[0.99] disabled:opacity-60 disabled:cursor-not-allowed cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1F5C4A]"
             disabled={loadingRegistration}
           >
             {loadingRegistration ? (

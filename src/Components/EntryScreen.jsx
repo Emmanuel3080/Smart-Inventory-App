@@ -1,119 +1,179 @@
 import React from 'react';
-import { ShieldCheck, ShoppingBag, Sparkles, Activity, Layers } from 'lucide-react';
-import { RoleCard } from './Rolecard';
+import {
+  Package,
+  BellRing,
+  Truck,
+  ReceiptText,
+  Users,
+  ArrowRight,
+  ShieldCheck,
+} from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { SmallBizLogo } from './SmallBizLogo';
+
+const OWNER_SIGNIN_URL = '/admin/signin';
+const OWNER_SIGNUP_URL = '/admin/signup';
+const STAFF_SIGNIN_URL = '/staff/signin';
+
+/*
+  SmallBiz Design System
+  Background  #FAF8F5   Surface  #FFFFFF   Border  #E8E2D8
+  Heading     #1C1917   Body     #57534E   Muted   #78716C
+  Primary     #1F5C4A   Hover    #174738   Tint    #E3EEE9
+  Accent      #D99A2B
+  Dark panel  #123D31   Text on dark #FFFFFF / #B9CEC5
+*/
+
+const features = [
+  {
+    icon: Package,
+    title: 'Products & Live Stock',
+    text: 'Add items, track quantities in real time, and keep your catalog organized.',
+  },
+  {
+    icon: BellRing,
+    title: 'Low-Stock Alerts',
+    text: 'Spot depletion points and reorder before customer demand stalls.',
+  },
+  {
+    icon: Users,
+    title: 'Staff & Team Delegation',
+    text: 'Invite team members, assign POS shifts, and audit checkout operations.',
+  },
+  {
+    icon: ReceiptText,
+    title: 'Sales & Daily Revenue',
+    text: 'Review checkout records, cashier metrics, and gross store revenue.',
+  },
+];
 
 export function EntryScreen() {
   return (
-    <div className="min-h-screen flex flex-col bg-[#FAF8F5] text-stone-900 selection:bg-stone-200 selection:text-stone-900">
-      {/* Top Header */}
-      <header className="w-full border-b border-[#E8E2D8] bg-white/95 backdrop-blur-sm sticky top-0 z-20">
-        <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <div className="w-9 h-9 rounded-lg bg-stone-900 flex items-center justify-center text-white shadow-xs">
-              <Layers size={18} />
-            </div>
-            <div className="flex flex-col">
-              <span className="font-bold text-stone-900 text-base tracking-tight leading-none flex items-center gap-2">
-                SME
-                {/* <span className="text-[11px] font-semibold px-2 py-0.5 rounded-full bg-[#F2EDE4] text-stone-700 border border-[#E0D9CD]">
-                  PRO
-                </span> */}
-              </span>
-              <span className="text-[11px] font-medium text-stone-500 tracking-wider uppercase mt-1">
-                Retail & Inventory Platform
-              </span>
-            </div>
-          </div>
+    <div className="min-h-screen flex flex-col bg-[#FAF8F5] text-[#1C1917] selection:bg-[#D99A2B]/30">
+      {/* Header */}
+      <header className="w-full border-b border-[#E8E2D8] bg-white sticky top-0 z-30">
+        <div className="max-w-6xl mx-auto px-6 py-3.5 flex items-center justify-between">
+          <Link
+            to="/entry"
+            className="focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1F5C4A] rounded-xl"
+            aria-label="SmallBiz Home"
+          >
+            <SmallBizLogo
+              variant="full"
+              size="md"
+              subtitle="Inventory & Business Management"
+            />
+          </Link>
 
-          <div className="flex items-center gap-2">
-            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium bg-[#EEF5EE] text-emerald-800 border border-emerald-200">
-              <span className="w-1.5 h-1.5 rounded-full bg-emerald-600" />
-              Systems Online
-            </span>
-          </div>
+          {/* <div className="flex items-center gap-3">
+            <Link
+              to={STAFF_SIGNIN_URL}
+              className="text-xs font-semibold text-[#57534E] hover:text-[#1C1917] px-3 py-2 rounded-lg hover:bg-[#FAF8F5] transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1F5C4A]"
+            >
+              Staff Portal
+            </Link>
+            <Link
+              to={OWNER_SIGNIN_URL}
+              className="text-xs font-semibold text-[#1F5C4A] hover:text-[#174738] px-3.5 py-2 rounded-lg border border-[#1F5C4A] bg-white hover:bg-[#E3EEE9] transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1F5C4A]"
+            >
+              Owner Sign In
+            </Link>
+          </div> */}
         </div>
       </header>
 
-      {/* Main Content */}
-      <main className="flex-grow flex flex-col items-center justify-center px-6 py-12 md:py-20">
-        <div className="max-w-5xl w-full mx-auto">
-          {/* Hero Section */}
-          <div className="text-center mb-12 md:mb-16">
-            <div className="inline-flex items-center gap-2 px-3 py-1 mb-5 rounded-full bg-[#F2EDE4] border border-[#E0D9CD] text-stone-700 text-xs font-medium tracking-wide">
-              <Sparkles size={13} className="text-stone-600" />
-              Minimalist Inventory & POS Terminal
-            </div>
+      {/* Main Hero & Value Proposition */}
+      <main className="flex-grow flex items-center px-6 py-10 md:py-16">
+        <div className="max-w-6xl w-full mx-auto grid lg:grid-cols-12 gap-10 lg:gap-14 items-center">
+          {/* Left: Message + Actions */}
+          <section className="lg:col-span-6">
+            {/* <div className="inline-flex items-center gap-2 px-3 py-1 mb-4 rounded-full bg-[#E3EEE9] border border-[#1F5C4A]/20 text-[#1F5C4A] text-xs font-semibold tracking-wide">
+              <ShieldCheck size={14} />
+              Inventory &amp; Business Management
+            </div> */}
 
-            <h1 className="text-4xl sm:text-5xl md:text-6xl font-serif tracking-tight text-stone-900 mb-5 leading-[1.15]">
-              Thoughtful retail management, <br className="hidden sm:block" />
-              <span className="italic font-normal text-stone-700">
-                crafted for modern businesses
-              </span>
+            <h1 className="text-4xl sm:text-5xl font-semibold tracking-tight leading-[1.12] text-[#1C1917]">
+              Run your business. <br className="hidden sm:inline" />
+              Know your stock.
             </h1>
 
-            <p className="text-base sm:text-lg text-stone-600 max-w-2xl mx-auto leading-relaxed font-normal">
-              Track stock levels accurately, process checkout transactions swiftly, and manage supplier orders with ease. Select your workspace portal below to continue.
+            <p className="mt-5 text-lg text-[#57534E] leading-relaxed max-w-md">
+              A simpler way for growing businesses to manage inventory, staff,
+              sales and daily operations.
             </p>
-          </div>
 
-          {/* Role Cards Grid */}
-          <div className="grid md:grid-cols-2 gap-6 sm:gap-8 mb-14">
-            <RoleCard
-              title="Admin Portal"
-              subtitle="Management & Strategy"
-              badge="Full Executive Control"
-              description="Access product catalog controls, supplier management, revenue audits, and system configuration."
-              icon={ShieldCheck}
-              buttonText="Enter Admin Console"
-              variant="admin"
-              signupUrl="/admin/signup"
-              signinUrl="/admin/signin"
-              features={[
-                'Product catalog creation, pricing & low-stock alerts',
-                'Supplier records & direct WhatsApp communications',
-                'Comprehensive sales transactions audit log',
-                'Business telemetry & role-based controls',
-              ]}
-            />
+            {/* Primary Action Buttons */}
+            <div className="mt-8 flex flex-col sm:flex-row gap-3">
+              <Link
+                to={OWNER_SIGNUP_URL}
+                className="inline-flex items-center justify-center gap-2 rounded-xl bg-[#1F5C4A] px-6 py-3.5 text-sm font-semibold text-white hover:bg-[#174738] active:bg-[#103328] transition-colors shadow-xs focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1F5C4A]"
+              >
+                Create your account
+                <ArrowRight size={16} />
+              </Link>
+              <Link
+                to={OWNER_SIGNIN_URL}
+                className="inline-flex items-center justify-center rounded-xl border border-[#1F5C4A] bg-white px-6 py-3.5 text-sm font-semibold text-[#1F5C4A] hover:bg-[#E3EEE9] transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1F5C4A]"
+              >
+                Sign in to store
+              </Link>
+            </div>
 
-            <RoleCard
-              title="Staff Terminal"
-              subtitle="Daily Sales & Operations"
-              badge="Fast POS Register"
-              description="Fast point-of-sale checkout counter, live catalog lookup, quantity verification, and daily sales receipts."
-              icon={ShoppingBag}
-              buttonText="Open Staff POS Counter"
-              variant="staff"
-              signupUrl="/staff/signup"
-              signinUrl="/staff/signin"
-              features={[
-                'Instant SKU and product catalog search',
-                'Multi-item sales cart & automatic subtotal calculation',
-                'Cash, Card, & Bank Transfer payment handling',
-                'Instant stock decrement & printable sales receipt',
-              ]}
-            />
-          </div>
+            {/* <p className="mt-4 text-xs text-[#78716C] flex items-center gap-1.5">
+              <span>Invited as a staff member?</span>
+              <Link
+                to={STAFF_SIGNIN_URL}
+                className="text-[#1F5C4A] font-semibold hover:underline"
+              >
+                Sign in to Staff Register &rarr;
+              </Link>
+            </p> */}
+          </section>
 
-          {/* Bottom Security / Trust Notice */}
-          <div className="flex flex-wrap items-center justify-center gap-6 sm:gap-10 pt-6 border-t border-[#E8E2D8] text-xs font-medium text-stone-500">
-            <span className="flex items-center gap-2">
-              <Activity size={15} className="text-stone-700" /> High-Availability Architecture
-            </span>
-            <span className="flex items-center gap-2">
-              <ShieldCheck size={15} className="text-stone-700" /> Secure Token Authentication
-            </span>
-            <span className="flex items-center gap-2">
-              <Layers size={15} className="text-stone-700" /> Multi-Counter Operations Ready
-            </span>
-          </div>
+          {/* Right: What You Can Do */}
+          <section
+            className="lg:col-span-6 rounded-2xl bg-[#123D31] p-4 sm:p-6 shadow-sm border border-[#1F5C4A]"
+            aria-label="SmallBiz Core Capabilities"
+          >
+            <div className="mb-4 px-2">
+              <span className="text-xs font-semibold uppercase tracking-wider text-[#D99A2B]">
+                Core Platform Features
+              </span>
+              <h2 className="text-xl font-semibold text-white mt-1">
+                Everything you need to govern your store
+              </h2>
+            </div>
+
+            <ul className="divide-y divide-white/10">
+              {features.map(({ icon: Icon, title, text }) => (
+                <li key={title} className="flex items-start gap-4 px-2 py-4">
+                  <span className="mt-0.5 flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[#D99A2B] text-[#1C1917] shadow-xs">
+                    <Icon size={20} />
+                  </span>
+                  <div>
+                    <h3 className="text-base font-semibold text-white">{title}</h3>
+                    <p className="mt-1 text-sm leading-relaxed text-[#B9CEC5]">{text}</p>
+                  </div>
+                </li>
+              ))}
+            </ul>
+          </section>
         </div>
       </main>
 
-      {/* Footer */}
-      <footer className="border-t border-[#E8E2D8] py-6 text-center text-xs text-stone-500 bg-white">
-        <p>&copy; {new Date().getFullYear()} SME.OS. Engineered for modern retail and wholesale businesses.</p>
-      </footer>
+      {/* Simple Clean Footer */}
+      {/* <footer className="w-full border-t border-[#E8E2D8] bg-white py-6">
+        <div className="max-w-6xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-[#78716C]">
+          <div className="flex items-center gap-2">
+            <span className="font-semibold text-[#1C1917]">SmallBiz</span>
+            <span>&bull;</span>
+            <span>Run your business. Know your stock.</span>
+          </div>
+          <p>&copy; {new Date().getFullYear()} SmallBiz. All rights reserved.</p>
+        </div>
+      </footer> */}
     </div>
   );
 }
+
+export default EntryScreen;

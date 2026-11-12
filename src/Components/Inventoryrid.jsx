@@ -31,6 +31,8 @@ const InventoryGrid = () => {
     allproducts = [],
     ProcessSales,
     loadingCheckout,
+    loadingInventory,
+    errorInventory,
   } = useContext(StaffOperationContext);
 
   const [loading, setLoading] = useState(false);
@@ -342,18 +344,65 @@ const InventoryGrid = () => {
       </div>
 
       {/* POS Product Cards Grid */}
-      {loading ? (
+      {errorInventory ? (
+        <div className="text-center py-16 bg-white rounded-2xl border border-rose-200 shadow-xs p-6 space-y-3">
+          <AlertTriangle className="mx-auto text-rose-500" size={36} />
+          <h3 className="text-base font-serif font-bold text-stone-900">
+            Unable to Load Store Inventory
+          </h3>
+          <p className="text-xs text-stone-600 max-w-sm mx-auto">
+            {errorInventory}
+          </p>
+          <button
+            type="button"
+            onClick={handleRefresh}
+            className="px-4 py-2 bg-stone-900 hover:bg-stone-800 text-stone-50 rounded-xl text-xs font-semibold transition-colors cursor-pointer"
+          >
+            Retry Loading
+          </button>
+        </div>
+      ) : loading || loadingInventory ? (
         <div className="flex flex-col items-center justify-center py-24 gap-3 bg-white rounded-2xl border border-[#E8E2D8]">
           <div className="w-6 h-6 border-2 border-stone-800 border-t-transparent rounded-full animate-spin" />
-          <span className="text-xs font-medium text-stone-600">Loading catalog items...</span>
+          <span className="text-xs font-medium text-stone-600">
+            Loading assigned store products...
+          </span>
+        </div>
+      ) : allproducts.length === 0 ? (
+        <div className="text-center py-20 bg-white rounded-2xl border border-[#E8E2D8] shadow-xs p-6 space-y-3">
+          <Package className="mx-auto text-stone-400" size={36} />
+          <h3 className="text-base font-serif font-bold text-stone-900">
+            No Products in Store Catalog
+          </h3>
+          <p className="text-xs text-stone-500 max-w-md mx-auto">
+            Your assigned administrator has not registered any inventory items yet. As soon as products are added to the catalog, they will appear here automatically.
+          </p>
+          <button
+            type="button"
+            onClick={handleRefresh}
+            className="px-4 py-2 bg-white border border-[#E8E2D8] hover:border-stone-400 text-stone-700 text-xs font-medium rounded-xl hover:bg-[#FAF7F2] transition-colors cursor-pointer"
+          >
+            Check for Updates
+          </button>
         </div>
       ) : filteredProducts.length === 0 ? (
-        <div className="text-center py-20 bg-white rounded-2xl border border-[#E8E2D8] shadow-xs p-6">
-          <Package className="mx-auto text-stone-400 mb-3" size={36} />
+        <div className="text-center py-20 bg-white rounded-2xl border border-[#E8E2D8] shadow-xs p-6 space-y-3">
+          <Package className="mx-auto text-stone-400" size={36} />
           <h3 className="text-base font-serif font-bold text-stone-900">No products match current filters</h3>
-          <p className="text-xs text-stone-500 mt-1 max-w-sm mx-auto">
+          <p className="text-xs text-stone-500 max-w-sm mx-auto">
             Try adjusting your search query, selecting "All" categories, or resetting the stock status filter.
           </p>
+          <button
+            type="button"
+            onClick={() => {
+              setSearchQuery("");
+              setSelectedCategory("All");
+              setStockFilter("All");
+            }}
+            className="px-4 py-2 bg-[#FAF7F2] border border-[#E8E2D8] text-stone-700 text-xs font-medium rounded-xl hover:bg-white transition-colors cursor-pointer"
+          >
+            Reset Filters
+          </button>
         </div>
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-5">

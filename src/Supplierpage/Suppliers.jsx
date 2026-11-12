@@ -105,7 +105,7 @@ const SupplierCard = ({ data }) => {
           href={`https://wa.me/${waNumber}`}
           target="_blank"
           rel="noopener noreferrer"
-          className="flex items-center justify-center gap-2 w-full py-2.5 rounded-xl font-semibold text-xs text-stone-50 transition-colors bg-stone-900 hover:bg-stone-800 shadow-xs cursor-pointer"
+          className="flex items-center justify-center gap-2 w-full py-2.5 rounded-xl font-semibold text-xs text-[#1F5C4A] border border-[#1F5C4A] bg-white hover:bg-[#E3EEE9] transition-colors shadow-xs cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1F5C4A]"
         >
           <MessageCircle size={15} />
           <span>Chat on WhatsApp</span>
@@ -170,7 +170,7 @@ const Suppliers = () => {
             {/* Add Supplier Button */}
             <Link
               to="/add/supplier"
-              className="flex items-center gap-2 px-5 py-2.5 bg-stone-900 hover:bg-stone-800 text-stone-50 rounded-xl text-xs font-semibold transition-colors shadow-xs active:scale-[0.98]"
+              className="flex items-center gap-2 px-5 py-2.5 bg-[#1F5C4A] hover:bg-[#174738] active:bg-[#103328] text-white rounded-xl text-xs font-semibold transition-colors shadow-xs active:scale-[0.98] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1F5C4A]"
             >
               <Plus size={15} />
               <span>Onboard Supplier</span>

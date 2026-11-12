@@ -54,7 +54,7 @@ const ProductProvider = ({ children }) => {
             const data = await response.json()
             if (response.ok) {
                 toast.success(`${data.Message || "Product Added Successfuly"}`)
-                navigate("/admin")
+                navigate("/admin/dashboard")
             }
             else {
                 toast.error(`${data.Message || "Failed to add product"}`)
@@ -159,7 +159,7 @@ const ProductProvider = ({ children }) => {
             const data = await response.json()
             if (response.ok) {
                 toast.success("Product Updated Successfully")
-                navigate("/admin")
+                navigate("/admin/dashboard")
             }
             else {
                 toast.error("Failed to Update product")
